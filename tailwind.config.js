@@ -15,9 +15,11 @@ export default {
         lgrey: '#C8D6E5',
         grey: '#8395A7',
         black: '#212F3E',
+        white: '#F2F2F2',
       },
       fontFamily: {
         poppins: 'Poppins, sans-serif',
+        lora: 'Lora, serif',
       },
       boxShadow: {
         custom: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px',

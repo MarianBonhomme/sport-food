@@ -12,12 +12,6 @@ function Carte() {
     const fetchRecipes = async () => {
       const recipesData = await getRecipes();
       setRecipes(recipesData);
-
-      // const allCuisines = recipesData.reduce(
-      //   (allTypes, recipe) => allTypes.concat(recipe.cuisine),
-      //   []
-      // );
-      // setSelectedCuisines(Array.from(new Set(allCuisines)));
     };
 
     fetchRecipes();
@@ -38,8 +32,8 @@ function Carte() {
   };
 
   return (
-    <div className="p-20 w-full flex flex-col justify-center">
-      <h2 className="text-5xl font-semibold mb-10">Liste des plats</h2>
+    <div className="min-h-screen w-full flex flex-col bg-white p-20">
+      <h2 className="font-lora text-7xl font-bold mb-20">NOTRE CARTE</h2>
       <div className="max-w-3xl flex flex-wrap justify-center self-center gap-2 mb-10">
         {recipes
           .reduce((allCuisines, recipe) => allCuisines.concat(recipe.cuisine), [])

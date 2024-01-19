@@ -23,7 +23,7 @@ function Header() {
   return (
     <div className="w-full h-[70px] flex justify-between items-center shadow-border px-20">
       <NavLink to={"/"}>
-        <span className="text-3xl">🏠</span>
+        <img src="src/assets/img/logo.png" className="h-10"/>
       </NavLink>
       <nav className="flex gap-10">
         <NavLink to={"/presentation"}>Présentation</NavLink>
