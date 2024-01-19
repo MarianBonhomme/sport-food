@@ -1,3 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+	transition: all 0.2s ease-in-out;
+}
+
+.bg-red {
+	background: #EE5353;
+}
+
+.bg-green {
+	background: #10AC84;
+}
+
+.bg-blue {
+	background: #569FFF;
+}
+
+.bg-orange {
+	background: #FF9F43;
+}
+
+.bg-pink {
+	background: #F368E0;
+}
+
+.text-red {
+	color: #EE5353;
+}
+
+.text-green {
+	color: #10AC84;
+}
+
+.text-blue {
+	color: #569FFF;
+}
+
+.text-orange {
+	color: #FF9F43;
+}
+
+.text-pink {
+	color: #F368E0;
+}
+
+.border-red {
+	border-color: #EE5353;
+}
+
+.border-green {
+	border-color: #10AC84;
+}
+
+.border-blue {
+	border-color: #569FFF;
+}
+
+.border-orange {
+	border-color: #FF9F43;
+}
+
+.border-pink {
+	border-color: #F368E0;
+}

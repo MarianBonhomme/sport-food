@@ -21,11 +21,11 @@ function Header() {
   };
 
   return (
-    <div className="w-full h-[70px] flex justify-between items-center bg-blue-600 text-white px-10 text-lg">
+    <div className="w-full h-[70px] flex justify-between items-center shadow-border px-20">
       <NavLink to={"/"}>
         <span className="text-3xl">🏠</span>
       </NavLink>
-      <nav className="flex gap-5">
+      <nav className="flex gap-10">
         <NavLink to={"/presentation"}>Présentation</NavLink>
         <NavLink to={"/carte"}>Carte</NavLink>
         <NavLink to={"/localisation"}>Localisation</NavLink>
