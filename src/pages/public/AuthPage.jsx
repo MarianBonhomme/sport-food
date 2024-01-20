@@ -2,9 +2,11 @@ import React, { useContext, useRef } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 
-function Auth() {
+function AuthPage() {
   const { isLogged, signIn } = useContext(UserContext);
   const navigate = useNavigate();
+
+  console.log(isLogged);
 
   if (isLogged) {
     return <Navigate to={"/"} />;
@@ -59,4 +61,4 @@ function Auth() {
   );
 }
 
-export default Auth;
+export default AuthPage;

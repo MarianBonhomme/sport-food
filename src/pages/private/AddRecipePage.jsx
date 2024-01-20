@@ -1,9 +1,9 @@
 import React from 'react'
 
-function AjouterPlat() {
+function AddRecipePage() {
   return (
 	<div>AjouterPlat</div>
   )
 }
 
-export default AjouterPlat
+export default AddRecipePage

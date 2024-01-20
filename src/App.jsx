@@ -1,34 +1,36 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import FooterComponent from "./components/FooterComponent";
+import HeaderComponent from "./components/HeaderComponent";
 import { UserContextProvider } from "./context/userContext";
-import AjouterPlat from "./pages/private/AjouterPlat";
-import ListePlats from "./pages/private/ListePlats";
-import Auth from "./pages/public/Auth";
-import Carte from "./pages/public/Carte";
-import Home from "./pages/public/Home";
-import Localisation from "./pages/public/Localisation";
-import Presentation from "./pages/public/Presentation";
-import Private from "./pages/private/Private";
+import AddRecipePage from "./pages/private/AddRecipePage";
+import PrivatePage from "./pages/private/PrivatePage";
+import RecipeListPage from "./pages/private/RecipeListPage";
+import AuthPage from "./pages/public/AuthPage";
+import HomePage from "./pages/public/HomePage";
+import LocalisationPage from "./pages/public/LocalisationPage";
+import MenuPage from "./pages/public/MenuPage";
+import OrderRecapPage from "./pages/public/OrderRecapPage";
+import PresentationPage from './pages/public/PresentationPage';
 
 function App() {
   return (
     <BrowserRouter>
       <UserContextProvider>
-        <Header />
+        <HeaderComponent />
         <Routes>
-          <Route path="/" Component={Home} />
-          <Route path="/presentation" Component={Presentation} />
-          <Route path="/carte" Component={Carte} />
-          <Route path="/localisation" Component={Localisation} />
-          <Route path="/connexion" Component={Auth} />
-          <Route path="/private" Component={Private}>
-            <Route path="/private/liste" Component={ListePlats} />
-            <Route path="/private/ajouter" Component={AjouterPlat} />
+          <Route path="/" Component={HomePage} />
+          <Route path="/presentation" Component={PresentationPage} />
+          <Route path="/carte" Component={MenuPage} />
+          <Route path="/localisation" Component={LocalisationPage} />
+          <Route path="/order" Component={OrderRecapPage} />
+          <Route path="/auth" Component={AuthPage} />
+          <Route path="/private" Component={PrivatePage}>
+            <Route path="/private/liste" Component={RecipeListPage} />
+            <Route path="/private/ajouter" Component={AddRecipePage} />
           </Route>
           <Route path="*" element={<Navigate to={"/"} />} />
         </Routes>
-        <Footer />
+        <FooterComponent />
       </UserContextProvider>
     </BrowserRouter>
   );

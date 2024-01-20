@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Localisation() {
+function LocalisationPage() {
   return (
 	<div>Localisation</div>
   )
 }
 
-export default Localisation
+export default LocalisationPage

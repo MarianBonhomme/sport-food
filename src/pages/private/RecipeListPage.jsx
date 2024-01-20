@@ -1,9 +1,9 @@
 import React from 'react'
 
-function ListePlats() {
+function RecipeListPage() {
   return (
 	<div>ListePlats</div>
   )
 }
 
-export default ListePlats
+export default RecipeListPage

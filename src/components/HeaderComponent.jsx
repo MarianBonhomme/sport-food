@@ -3,8 +3,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/userContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase-config";
+import { Button, Dropdown } from "flowbite-react";
+import OrderComponent from './OrderComponent';
 
-function Header() {
+function HeaderComponent() {
   const { isLogged } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -25,10 +27,13 @@ function Header() {
       <NavLink to={"/"}>
         <img src="src/assets/img/logo.png" className="h-10"/>
       </NavLink>
-      <nav className="flex gap-10">
+      <nav className="flex items-center gap-10">
         <NavLink to={"/presentation"}>Présentation</NavLink>
         <NavLink to={"/carte"}>Carte</NavLink>
         <NavLink to={"/localisation"}>Localisation</NavLink>
+        <Dropdown label="" dismissOnClick={false} renderTrigger={() => <p className="bg-blue text-white rounded-3xl px-4 py-1 cursor-pointer">Panier</p>}>
+          <OrderComponent />
+        </Dropdown>
         {isLogged && (
           <>
             <NavLink to={"/private/liste"}>Liste</NavLink>
@@ -41,4 +46,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default HeaderComponent;

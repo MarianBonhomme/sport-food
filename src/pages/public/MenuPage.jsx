@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Recipe from "../../components/Recipe";
+import RecipeComponent from "../../components/RecipeComponent";
 import { getRecipes } from "../../services/RecipeService";
 
 const colors = ['green', 'orange', 'blue', 'red', 'pink'];
 
-function Carte() {
+function MenuPage() {
   const [recipes, setRecipes] = useState([]);
   const [selectedCuisines, setSelectedCuisines] = useState([]);
 
@@ -32,7 +32,7 @@ function Carte() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-white p-20">
+    <div className="min-h-screen w-full flex flex-col p-20">
       <h2 className="font-lora text-7xl font-bold mb-20">NOTRE CARTE</h2>
       <div className="max-w-3xl flex flex-wrap justify-center self-center gap-2 mb-10">
         {recipes
@@ -57,11 +57,11 @@ function Carte() {
             }
           })
           .map((recipe) => (
-            <Recipe key={recipe.id} item={recipe} />
+            <RecipeComponent key={recipe.id} item={recipe} />
           ))}
       </ul>
     </div>
   );
 }
 
-export default Carte;
+export default MenuPage;
