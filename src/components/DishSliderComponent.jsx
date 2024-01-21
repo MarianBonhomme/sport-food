@@ -31,17 +31,22 @@ export default function DishSliderComponent() {
     dots: true,
     slidesToShow: 4,
     slidesToScroll: 1,
-	prevArrow: <PrevArrow />,
-	nextArrow: <NextArrow />
+    infinite: false,
+    autoplay: true,
+    autoplaySpeed: 5000,
+	  prevArrow: <PrevArrow />,
+	  nextArrow: <NextArrow />
   };
 
 
   return (
     <Slider {...settings}>
-      {dishs.map((dish) => (
-        <div className="p-2" key={dish.id}>
-          <DishForSliderComponent item={dish} />
-        </div>
+      {dishs.map((dish, index) => (
+        index <= 9 && (
+          <div className="p-2" key={dish.id}>
+            <DishForSliderComponent item={dish} />
+          </div>
+        )
       ))}
     </Slider>
   );
