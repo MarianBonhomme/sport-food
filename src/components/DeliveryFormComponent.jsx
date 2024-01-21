@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function DeliveryFormComponent() {
+function DeliveryFormComponent({ onSubmitCallback }) {
   const [formData, setFormData] = useState({
     fullName: "",
     deliveryAddress: "",
@@ -18,7 +18,7 @@ function DeliveryFormComponent() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    onSubmitCallback(formData);
   };
 
   return (
