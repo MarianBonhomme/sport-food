@@ -6,8 +6,6 @@ function AuthPage() {
   const { isLogged, signIn } = useContext(UserContext);
   const navigate = useNavigate();
 
-  console.log(isLogged);
-
   if (isLogged) {
     return <Navigate to={"/"} />;
   }
@@ -55,7 +53,7 @@ function AuthPage() {
             required
             className="w-full border rounded-lg py-2 px-5 mt-1 mb-5"
           />
-        <button type="submit" className="bg-blue-600 text-white text-sm px-6 py-1 rounded-lg">Valider</button>
+        <button type="submit" className="bg-blue text-white text-sm px-6 py-1 rounded-lg">Valider</button>
       </form>
     </div>
   );

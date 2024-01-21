@@ -9,7 +9,7 @@ import AuthPage from "./pages/public/AuthPage";
 import HomePage from "./pages/public/HomePage";
 import LocalisationPage from "./pages/public/LocalisationPage";
 import MenuPage from "./pages/public/MenuPage";
-import OrderRecapPage from "./pages/public/OrderRecapPage";
+import OrderPage from "./pages/public/OrderPage";
 import PresentationPage from "./pages/public/PresentationPage";
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
             <Route path="/presentation" Component={PresentationPage} />
             <Route path="/menu" Component={MenuPage} />
             <Route path="/localisation" Component={LocalisationPage} />
-            <Route path="/order" Component={OrderRecapPage} />
+            <Route path="/order" Component={OrderPage} />
             <Route path="/auth" Component={AuthPage} />
             <Route path="/private" Component={PrivatePage}>
               <Route path="/private/list" Component={DishListPage} />
