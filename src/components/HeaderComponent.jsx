@@ -1,13 +1,14 @@
+import { signOut } from "firebase/auth";
 import React, { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useOrder } from "../context/orderContext";
 import { UserContext } from "../context/userContext";
-import { signOut } from "firebase/auth";
 import { auth } from "../firebase-config";
-import { Button, Dropdown } from "flowbite-react";
 import OrderComponent from './OrderComponent';
 
 function HeaderComponent() {
   const { isLogged } = useContext(UserContext);
+  const {isDropdownOpen, openDropdown, closeDropdown} = useOrder();
   const navigate = useNavigate();
 
   const logout = async () => {
@@ -23,7 +24,7 @@ function HeaderComponent() {
   };
 
   return (
-    <div className="w-full h-[70px] flex justify-between items-center shadow-border px-20">
+    <div className="fixed top-0 left-0 w-full h-[70px] flex justify-between items-center bg-white shadow-border px-20 z-20">
       <NavLink to={"/"}>
         <img src="src/assets/img/logo.png" className="h-10"/>
       </NavLink>
@@ -31,9 +32,10 @@ function HeaderComponent() {
         <NavLink to={"/presentation"}>Présentation</NavLink>
         <NavLink to={"/carte"}>Carte</NavLink>
         <NavLink to={"/localisation"}>Localisation</NavLink>
-        <Dropdown label="" dismissOnClick={false} renderTrigger={() => <p className="bg-blue text-white rounded-3xl px-4 py-1 cursor-pointer">Panier</p>}>
+        <div>
+          <p onClick={isDropdownOpen ? closeDropdown : openDropdown} className="bg-blue text-white rounded-3xl px-4 py-1 cursor-pointer">Panier</p>
           <OrderComponent />
-        </Dropdown>
+        </div>
         {isLogged && (
           <>
             <NavLink to={"/private/liste"}>Liste</NavLink>

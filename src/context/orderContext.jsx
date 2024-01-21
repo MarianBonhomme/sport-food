@@ -57,6 +57,10 @@ export const OrderProvider = ({ children }) => {
     setIsDropdownOpen(true);
   };
 
+  const closeDropdown = () => {
+    setIsDropdownOpen(false);
+  };
+
   return (
     <OrderContext.Provider
       value={{
@@ -67,6 +71,7 @@ export const OrderProvider = ({ children }) => {
         incrementQuantity,
         decrementQuantity,
         openDropdown,
+        closeDropdown,
       }}
     >
       {children}

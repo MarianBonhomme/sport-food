@@ -17,19 +17,21 @@ function App() {
     <BrowserRouter>
       <UserContextProvider>
         <HeaderComponent />
-        <Routes>
-          <Route path="/" Component={HomePage} />
-          <Route path="/presentation" Component={PresentationPage} />
-          <Route path="/carte" Component={MenuPage} />
-          <Route path="/localisation" Component={LocalisationPage} />
-          <Route path="/order" Component={OrderRecapPage} />
-          <Route path="/auth" Component={AuthPage} />
-          <Route path="/private" Component={PrivatePage}>
-            <Route path="/private/liste" Component={RecipeListPage} />
-            <Route path="/private/ajouter" Component={AddRecipePage} />
-          </Route>
-          <Route path="*" element={<Navigate to={"/"} />} />
-        </Routes>
+        <div className="min-h-screen pt-[70px]">
+          <Routes>
+            <Route path="/" Component={HomePage} />
+            <Route path="/presentation" Component={PresentationPage} />
+            <Route path="/carte" Component={MenuPage} />
+            <Route path="/localisation" Component={LocalisationPage} />
+            <Route path="/order" Component={OrderRecapPage} />
+            <Route path="/auth" Component={AuthPage} />
+            <Route path="/private" Component={PrivatePage}>
+              <Route path="/private/liste" Component={RecipeListPage} />
+              <Route path="/private/ajouter" Component={AddRecipePage} />
+            </Route>
+            <Route path="*" element={<Navigate to={"/"} />} />
+          </Routes>
+        </div>
         <FooterComponent />
       </UserContextProvider>
     </BrowserRouter>
