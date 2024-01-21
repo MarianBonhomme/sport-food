@@ -2,15 +2,15 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import FooterComponent from "./components/FooterComponent";
 import HeaderComponent from "./components/HeaderComponent";
 import { UserContextProvider } from "./context/userContext";
-import AddRecipePage from "./pages/private/AddRecipePage";
+import AddDishPage from "./pages/private/AddDishPage";
+import DishListPage from "./pages/private/DishListPage";
 import PrivatePage from "./pages/private/PrivatePage";
-import RecipeListPage from "./pages/private/RecipeListPage";
 import AuthPage from "./pages/public/AuthPage";
 import HomePage from "./pages/public/HomePage";
 import LocalisationPage from "./pages/public/LocalisationPage";
 import MenuPage from "./pages/public/MenuPage";
 import OrderRecapPage from "./pages/public/OrderRecapPage";
-import PresentationPage from './pages/public/PresentationPage';
+import PresentationPage from "./pages/public/PresentationPage";
 
 function App() {
   return (
@@ -21,13 +21,13 @@ function App() {
           <Routes>
             <Route path="/" Component={HomePage} />
             <Route path="/presentation" Component={PresentationPage} />
-            <Route path="/carte" Component={MenuPage} />
+            <Route path="/menu" Component={MenuPage} />
             <Route path="/localisation" Component={LocalisationPage} />
             <Route path="/order" Component={OrderRecapPage} />
             <Route path="/auth" Component={AuthPage} />
             <Route path="/private" Component={PrivatePage}>
-              <Route path="/private/liste" Component={RecipeListPage} />
-              <Route path="/private/ajouter" Component={AddRecipePage} />
+              <Route path="/private/list" Component={DishListPage} />
+              <Route path="/private/add" Component={AddDishPage} />
             </Route>
             <Route path="*" element={<Navigate to={"/"} />} />
           </Routes>

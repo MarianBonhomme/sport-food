@@ -30,16 +30,16 @@ function HeaderComponent() {
       </NavLink>
       <nav className="flex items-center gap-10">
         <NavLink to={"/presentation"}>Présentation</NavLink>
-        <NavLink to={"/carte"}>Carte</NavLink>
+        <NavLink to={"/menu"}>Carte</NavLink>
         <NavLink to={"/localisation"}>Localisation</NavLink>
-        <div>
+        <div className="select-none">
           <p onClick={isDropdownOpen ? closeDropdown : openDropdown} className="bg-blue text-white rounded-3xl px-4 py-1 cursor-pointer">Panier</p>
           <OrderComponent />
         </div>
         {isLogged && (
           <>
-            <NavLink to={"/private/liste"}>Liste</NavLink>
-            <NavLink to={"/private/ajouter"}>Ajouter</NavLink>
+            <NavLink to={"/private/list"}>Liste</NavLink>
+            <NavLink to={"/private/add"}>Ajouter</NavLink>
             <button onClick={logout}>❌</button>
           </>
         )}

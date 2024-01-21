@@ -6,50 +6,50 @@ export const OrderProvider = ({ children }) => {
   const [order, setOrder] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const addToOrder = (recipe) => {
-    const existingRecipe = order.find((r) => r.id === recipe.id);
+  const addToOrder = (dish) => {
+    const existingDish = order.find((r) => r.id === dish.id);
 
-    if (existingRecipe) {
+    if (existingDish) {
       setOrder((prevOrder) =>
         prevOrder.map((r) =>
-          r.id === recipe.id ? { ...r, quantity: r.quantity + 1 } : r
+          r.id === dish.id ? { ...r, quantity: r.quantity + 1 } : r
         )
       );
     } else {
-      setOrder((prevOrder) => [...prevOrder, { ...recipe, quantity: 1 }]);
+      setOrder((prevOrder) => [...prevOrder, { ...dish, quantity: 1 }]);
       setIsDropdownOpen(true);
     }
 	openDropdown();
   };
 
-  const removeFromOrder = (recipeId) => {
+  const removeFromOrder = (dishId) => {
     setOrder((prevOrder) =>
-      prevOrder.filter((recipe) => recipe.id !== recipeId)
+      prevOrder.filter((dish) => dish.id !== dishId)
     );
   };
 
-  const incrementQuantity = (recipeId) => {
+  const incrementQuantity = (dishId) => {
     setOrder((prevOrder) =>
-      prevOrder.map((recipe) =>
-        recipe.id === recipeId
-          ? { ...recipe, quantity: recipe.quantity + 1 }
-          : recipe
+      prevOrder.map((dish) =>
+        dish.id === dishId
+          ? { ...dish, quantity: dish.quantity + 1 }
+          : dish
       )
     );
   };
 
-  const decrementQuantity = (recipeId) => {
+  const decrementQuantity = (dishId) => {
     setOrder((prevOrder) =>
       prevOrder
-        .map((recipe) =>
-          recipe.id === recipeId
+        .map((dish) =>
+          dish.id === dishId
             ? {
-                ...recipe,
-                quantity: recipe.quantity > 1 ? recipe.quantity - 1 : 0,
+                ...dish,
+                quantity: dish.quantity > 1 ? dish.quantity - 1 : 0,
               }
-            : recipe
+            : dish
         )
-        .filter((recipe) => recipe.quantity > 0)
+        .filter((dish) => dish.quantity > 0)
     );
   };
 

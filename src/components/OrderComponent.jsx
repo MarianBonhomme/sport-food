@@ -9,18 +9,18 @@ function OrderComponent() {
       {isDropdownOpen && (
         <div className='flex flex-col items-start gap-3 px-5 py-3 border-b last:border-0'>
           {order && order.length > 0 ? (
-            order.map((recipe) => {
+            order.map((dish) => {
               return (
-                <div key={recipe.id}>
+                <div key={dish.id}>
                   <div className='flex items-center gap-3'>
-                    <img src={recipe.image} className='w-20 rounded-full'/>
+                    <img src={dish.image} className='w-20 rounded-full'/>
                     <div>
-                      <h4 className='font-semibold'>{recipe.name}</h4>
-                      <p className='text-sm'>{recipe.cuisine}</p>
+                      <h4 className='font-semibold'>{dish.name}</h4>
+                      <p className='text-sm'>{dish.cuisine}</p>
                       <div className='flex items-center gap-x-1 mt-1 text-sm'>
-                        <button onClick={() => decrementQuantity(recipe.id)} className='h-5 w-5 bg-red text-white px-1 rounded-full'>-</button>
-                        {recipe.quantity}
-                        <button onClick={() => incrementQuantity(recipe.id)} className='h-5 w-5 bg-green text-white px-1 rounded-full'>+</button>
+                        <button onClick={() => decrementQuantity(dish.id)} className='h-5 w-5 bg-red text-white px-1 rounded-full'>-</button>
+                        {dish.quantity}
+                        <button onClick={() => incrementQuantity(dish.id)} className='h-5 w-5 bg-green text-white px-1 rounded-full'>+</button>
                       </div>
                     </div>
                   </div>              

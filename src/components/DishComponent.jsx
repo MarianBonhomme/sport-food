@@ -1,7 +1,7 @@
 import React from "react";
 import { useOrder } from "../context/orderContext";
 
-function RecipeComponent(props) {
+function DishComponent(props) {
   const item = props.item;
   const { addToOrder } = useOrder();
 
@@ -45,4 +45,4 @@ function RecipeComponent(props) {
   );
 }
 
-export default RecipeComponent;
+export default DishComponent;

@@ -1,9 +1,9 @@
 import React from 'react'
 
-function AddRecipePage() {
+function AddDishPage() {
   return (
 	<div>AjouterPlat</div>
   )
 }
 
-export default AddRecipePage
+export default AddDishPage

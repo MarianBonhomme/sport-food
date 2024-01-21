@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
-import RecipeComponent from "../../components/RecipeComponent";
-import { getRecipes } from "../../services/RecipeService";
+import DishComponent from "../../components/DishComponent";
+import { getDishs } from './../../services/DishService';
 
 const colors = ['green', 'orange', 'blue', 'red', 'pink'];
 
 function MenuPage() {
-  const [recipes, setRecipes] = useState([]);
+  const [dishs, setDishs] = useState([]);
   const [selectedCuisines, setSelectedCuisines] = useState([]);
 
   useEffect(() => {
-    const fetchRecipes = async () => {
-      const recipesData = await getRecipes();
-      setRecipes(recipesData);
+    const fetchDishs = async () => {
+      const dishsData = await getDishs();
+      setDishs(dishsData);
     };
 
-    fetchRecipes();
+    fetchDishs();
   }, []);
 
   const toggleCuisine = (cuisine) => {
@@ -35,8 +35,8 @@ function MenuPage() {
     <div className="min-h-screen w-full flex flex-col p-20">
       <h2 className="font-lora text-7xl font-bold mb-20">NOTRE CARTE</h2>
       <div className="max-w-3xl flex flex-wrap justify-center self-center gap-2 mb-10">
-        {recipes
-          .reduce((allCuisines, recipe) => allCuisines.concat(recipe.cuisine), [])
+        {dishs
+          .reduce((allCuisines, dish) => allCuisines.concat(dish.cuisine), [])
           .filter((value, index, self) => self.indexOf(value) === index)
           .map((cuisine, index) => (
             <button
@@ -49,15 +49,15 @@ function MenuPage() {
           ))}
       </div>
       <ul className="flex flex-wrap justify-center gap-10">
-        {recipes.filter((recipe) => {
+        {dishs.filter((dish) => {
             if (selectedCuisines.length === 0) {
               return true;
             } else {
-              return selectedCuisines.includes(recipe.cuisine);
+              return selectedCuisines.includes(dish.cuisine);
             }
           })
-          .map((recipe) => (
-            <RecipeComponent key={recipe.id} item={recipe} />
+          .map((dish) => (
+            <DishComponent key={dish.id} item={dish} />
           ))}
       </ul>
     </div>
