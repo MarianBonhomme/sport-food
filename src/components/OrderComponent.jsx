@@ -1,9 +1,10 @@
 import React from 'react';
 import { useOrder } from '../context/orderContext';
 import { NavLink } from 'react-router-dom';
+import DishQuantityButtonComponent from './DishQuantityButtonComponent';
 
 function OrderComponent() {
-  const { order, incrementQuantity, decrementQuantity, isDropdownOpen } = useOrder();
+  const { order, isDropdownOpen, closeDropdown } = useOrder();
 
   return (
     <div className='absolute top-[80px] right-5 shadow-custom rounded-2xl bg-white'>
@@ -18,11 +19,7 @@ function OrderComponent() {
                     <div>
                       <h4 className='font-semibold'>{dish.name}</h4>
                       <p className='text-sm'>{dish.cuisine}</p>
-                      <div className='flex items-center gap-x-1 mt-1 text-sm'>
-                        <button onClick={() => decrementQuantity(dish.id)} className='h-5 w-5 bg-red text-white px-1 rounded-full'>-</button>
-                        {dish.quantity}
-                        <button onClick={() => incrementQuantity(dish.id)} className='h-5 w-5 bg-green text-white px-1 rounded-full'>+</button>
-                      </div>
+                      <DishQuantityButtonComponent  dish={dish}/>
                     </div>
                   </div>              
                 </div>
@@ -33,7 +30,7 @@ function OrderComponent() {
                 <button className='w-32 bg-green text-white text-sm rounded-3xl py-2'>Menu</button>
               </NavLink>
               <NavLink to={'/order'}>
-                <button className='w-32 bg-blue text-white text-sm rounded-3xl py-2'>Commander</button>
+                <button className='w-32 bg-blue text-white text-sm rounded-3xl py-2' onClick={closeDropdown}>Commander</button>
               </NavLink>
             </div>
           </div>

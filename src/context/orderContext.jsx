@@ -4,6 +4,7 @@ const OrderContext = createContext();
 
 export const OrderProvider = ({ children }) => {
   const [order, setOrder] = useState([]);
+  const [historicalOrders, setHistoricalOrders] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const addToOrder = (dish) => {
@@ -17,9 +18,17 @@ export const OrderProvider = ({ children }) => {
       );
     } else {
       setOrder((prevOrder) => [...prevOrder, { ...dish, quantity: 1 }]);
-      setIsDropdownOpen(true);
     }
-	openDropdown();
+	  openDropdown();
+  };
+
+  const addToHistorical = () => {
+    const orderWithDate = {
+      date: new Date,
+      items: order,
+    };
+    setHistoricalOrders([...historicalOrders, orderWithDate]);
+    setOrder([]);
   };
 
   const removeFromOrder = (dishId) => {
@@ -65,8 +74,10 @@ export const OrderProvider = ({ children }) => {
     <OrderContext.Provider
       value={{
         order,
+        historicalOrders,
         isDropdownOpen,
         addToOrder,
+        addToHistorical,
         removeFromOrder,
         incrementQuantity,
         decrementQuantity,

@@ -10,7 +10,7 @@ function PresentationPage() {
           <h1 className='text-8xl font-lora font-bold mb-5 text-nowrap'>SPORT FOOD</h1>
           <p className='text-xl text-justify mb-8'>Découvrez le plaisir d'une cuisine saine et sportive chez nous. Nos plats délicieux, riches en saveur et en nutriments, sont conçus pour les amateurs de bien-être et de sport. Rejoignez-nous pour une expérience culinaire qui nourrit votre corps et votre esprit. Bienvenue chez Sport Food!</p>
           <div className='flex gap-5'>
-            <NavLink to={"/carte"} >
+            <NavLink to={"/menu"} >
               <button className='bg-green text-white px-6 py-3 rounded-3xl select-none'>Découvrir la carte</button>
             </NavLink>
             <NavLink to={"/localisation"} >
@@ -26,7 +26,7 @@ function PresentationPage() {
           <h2 className='text-6xl font-lora font-bold mb-5 text-nowrap'>Healthy Food</h2>
           <p className='text-justify'>À destination des amateurs de sport cherchant à maintenir leur bien-être, notre restaurant se distingue par une offre culinaire dédiée. Chaque plat, équilibré et savoureux, est minutieusement conçu pour répondre aux exigences d'une clientèle active en quête d'une alimentation saine et délicieuse.</p>
           <div className='flex gap-5 mt-6'>
-            <NavLink to={"/carte"} >
+            <NavLink to={"/menu"} >
               <button className='bg-green text-white px-6 py-3 rounded-3xl select-none'>Je commande</button>
             </NavLink>
           </div>
@@ -38,7 +38,7 @@ function PresentationPage() {
           <p className='text-justify mb-3'>Nous sommes conscients de l'importance d'une alimentation rigoureuse. C'est pourquoi nous détaillons la composition en macronutriments de chacun de nos plats. <span className='text-orange font-medium'>Protéines, glucides, lipides...</span> aucune information ne vous échappera.</p>
           <p className='text-justify'>Avec Sport Food, adopter une alimentation saine au quotidien devient une démarche aisée ! Vous pourrez ainsi poursuivre votre régime en toute simplicité grâce à notre engagement à vous offrir une transparence totale sur la composition de nos repas.</p>
           <div className='flex gap-5 mt-6'>
-            <NavLink to={"/carte"} >
+            <NavLink to={"/menu"} >
               <button className='bg-orange text-white px-6 py-3 rounded-3xl select-none'>C'est pour moi!</button>
             </NavLink>
           </div>

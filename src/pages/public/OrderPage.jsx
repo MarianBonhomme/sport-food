@@ -3,15 +3,17 @@ import { useOrder } from '../../context/orderContext';
 import DishSliderComponent from '../../components/DishSliderComponent';
 import DeliveryFormComponent from '../../components/DeliveryFormComponent';
 import DeliveryConfirmedComponent from '../../components/DeliveryConfirmedComponent';
+import DishQuantityButtonComponent from '../../components/DishQuantityButtonComponent';
 
 function OrderPage() {
-  const { order, incrementQuantity, decrementQuantity } = useOrder();
+  const { order, addToHistorical } = useOrder();
   const [ confirmed, setConfirmed ] = useState(false);
   const [ deliveryData, setDeliveryData]  = useState();
   
   const confirmDelivery = (formData) => {
     setConfirmed(true);
     setDeliveryData(formData);
+    addToHistorical();
   }
 
   return (
@@ -28,11 +30,7 @@ function OrderPage() {
                       <div>
                         <h4 className='text-xl font-semibold'>{dish.name}</h4>
                         <p>{dish.cuisine}</p>
-                        <div className='flex items-center gap-x-2 mt-2'>
-                          <button onClick={() => decrementQuantity(dish.id)} className='h-7 w-7 bg-red text-white px-1 rounded-full'>-</button>
-                          {dish.quantity}
-                          <button onClick={() => incrementQuantity(dish.id)} className='h-7 w-7 bg-green text-white px-1 rounded-full'>+</button>
-                        </div>
+                        <DishQuantityButtonComponent dish={dish}/>
                       </div>
                     </div>              
                   </div>
@@ -46,7 +44,7 @@ function OrderPage() {
         ) : (
           <div className='block max-w-7xl'>
             <p className='text-grey text-2xl text-center font-semibold mb-10'>Votre panier est vide.</p>
-            <DishSliderComponent></DishSliderComponent>
+            <DishSliderComponent />
           </div>
         )
       ) : (

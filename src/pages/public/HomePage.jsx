@@ -20,8 +20,7 @@ function HomePage() {
         <div className='flex flex-col'>
           <h3 className='text-2xl font-semibold text-blue mb-3'>Commande</h3>
           <NavLink to={"/order"}>Panier</NavLink>
-          <NavLink to={"/delivery"}>Informations de livraison</NavLink>
-          <NavLink to={"/confirm"}>Confirmation de commande</NavLink>
+          <NavLink to={"/historical"}>Historique des commandes</NavLink>
         </div>
         <div className='flex flex-col'>
           <h3 className='text-2xl font-semibold text-blue mb-3'>Administration</h3>

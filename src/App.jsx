@@ -6,6 +6,7 @@ import AddDishPage from "./pages/private/AddDishPage";
 import DishListPage from "./pages/private/DishListPage";
 import PrivatePage from "./pages/private/PrivatePage";
 import AuthPage from "./pages/public/AuthPage";
+import HistoricalPage from './pages/public/HistoricalPage';
 import HomePage from "./pages/public/HomePage";
 import LocalisationPage from "./pages/public/LocalisationPage";
 import MenuPage from "./pages/public/MenuPage";
@@ -24,6 +25,7 @@ function App() {
             <Route path="/menu" Component={MenuPage} />
             <Route path="/localisation" Component={LocalisationPage} />
             <Route path="/order" Component={OrderPage} />
+            <Route path="/historical" Component={HistoricalPage} />
             <Route path="/auth" Component={AuthPage} />
             <Route path="/private" Component={PrivatePage}>
               <Route path="/private/list" Component={DishListPage} />
