@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
+import ButtonComponent from '../../components/ButtonComponent';
 
 // TODO: ajouter des sections expliquant chaque point (calories / healthy etc)
 function PresentationPage() {
@@ -11,10 +12,10 @@ function PresentationPage() {
           <p className='text-xl text-justify mb-8'>Découvrez le plaisir d'une cuisine saine et sportive chez nous. Nos plats délicieux, riches en saveur et en nutriments, sont conçus pour les amateurs de bien-être et de sport. Rejoignez-nous pour une expérience culinaire qui nourrit votre corps et votre esprit. Bienvenue chez Sport Food!</p>
           <div className='flex gap-5'>
             <NavLink to={"/menu"} >
-              <button className='bg-green text-white px-6 py-3 rounded-3xl select-none'>Découvrir la carte</button>
+              <ButtonComponent text="Découvrir la carte" color="green"/>
             </NavLink>
             <NavLink to={"/localisation"} >
-              <button className='bg-orange text-white px-6 py-3 rounded-3xl select-none'>Nous rendre visite</button>
+              <ButtonComponent text="Nous rendre visite" color="orange"/>
             </NavLink>
           </div>
         </div>
@@ -27,7 +28,7 @@ function PresentationPage() {
           <p className='text-justify'>À destination des amateurs de sport cherchant à maintenir leur bien-être, notre restaurant se distingue par une offre culinaire dédiée. Chaque plat, équilibré et savoureux, est minutieusement conçu pour répondre aux exigences d'une clientèle active en quête d'une alimentation saine et délicieuse.</p>
           <div className='flex gap-5 mt-6'>
             <NavLink to={"/menu"} >
-              <button className='bg-green text-white px-6 py-3 rounded-3xl select-none'>Je commande</button>
+              <ButtonComponent text="Je commande" color="green"/>
             </NavLink>
           </div>
         </div>
@@ -39,7 +40,7 @@ function PresentationPage() {
           <p className='text-justify'>Avec Sport Food, adopter une alimentation saine au quotidien devient une démarche aisée ! Vous pourrez ainsi poursuivre votre régime en toute simplicité grâce à notre engagement à vous offrir une transparence totale sur la composition de nos repas.</p>
           <div className='flex gap-5 mt-6'>
             <NavLink to={"/menu"} >
-              <button className='bg-orange text-white px-6 py-3 rounded-3xl select-none'>C'est pour moi!</button>
+              <ButtonComponent text="C'est pour moi" color="orange"/>
             </NavLink>
           </div>
         </div>

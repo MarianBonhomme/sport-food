@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useOrder } from '../context/orderContext';
 import DishForOrderDropdownComponent from './Dish/DishForOrderDropdownComponent';
+import ButtonComponent from './ButtonComponent';
 
 function OrderComponent() {
   const { order, isDropdownOpen, closeDropdown } = useOrder();
@@ -18,10 +19,10 @@ function OrderComponent() {
             })}
             <div className='w-full flex justify-center'>
               <NavLink to={'/menu'}>
-                <button className='w-32 bg-green text-white text-sm rounded-3xl py-2 m-2'>Menu</button>
+                <ButtonComponent text="Menu" color="green" size="sm" customStyle="w-32 m-2"/>
               </NavLink>
               <NavLink to={'/order'}>
-                <button className='w-32 bg-blue text-white text-sm rounded-3xl py-2 m-2 ml-0' onClick={closeDropdown}>Commander</button>
+                <ButtonComponent text="Commander" color="blue" size="sm" customStyle="w-32 m-2"/>
               </NavLink>
             </div>
           </div>
@@ -29,7 +30,7 @@ function OrderComponent() {
           <div className='flex flex-col items-center gap-3 p-5'>
             <p className='text-grey text-sm'>Votre panier est vide.</p>
             <NavLink to={'/menu'}>
-              <button className='w-32 bg-green text-white text-sm rounded-3xl py-2'>Menu</button>
+              <ButtonComponent text="Menu" color="green" size="sm" customStyle="w-32"/>
             </NavLink>
           </div>
         )

@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import ButtonComponent from "../ButtonComponent";
 
 function DeliveryConfirmedComponent(props) {
   const deliveryData = props.deliveryData;
@@ -17,7 +18,7 @@ function DeliveryConfirmedComponent(props) {
         )}
       </div>
       <NavLink to={"/historical"}>
-        <button className="bg-orange text-white  px-4 py-2 rounded-3xl shadow-custom">Voir l'historique de mes commandes</button>
+        <ButtonComponent color="orange" text="Voir l'historique de mes commandes"/>
       </NavLink>
     </div>
   );

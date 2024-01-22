@@ -1,10 +1,11 @@
 import React from "react";
+import TitleComponent from './../../components/TitleComponent';
 
 function LocalisationPage() {
   return (
 
     <div className="flex flex-col justify-between p-10">
-      <h2 className="font-lora text-6xl text-center font-bold mb-20">On attend votre visite!</h2>
+      <TitleComponent text={"On attend votre visite!"} />
       <div className="flex justify-center items-center">
         <div className="w-1/3 select-none">
           <iframe

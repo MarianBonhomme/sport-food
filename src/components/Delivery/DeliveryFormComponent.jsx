@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ButtonComponent from "../ButtonComponent";
 
 function DeliveryFormComponent({ onSubmitCallback }) {
   const [formData, setFormData] = useState({
@@ -69,11 +70,8 @@ function DeliveryFormComponent({ onSubmitCallback }) {
           className="rounded-2xl shadow-custom mt-2 mb-5 px-4 py-2"
         />
       </div>
-      <button
-        type="submit"
-        className="mx-auto max-w-fit bg-blue text-white px-4 py-2 mt-5 rounded-3xl shadow-custom"
-      >
-        Valider la commande
+      <button type="submit">
+        <ButtonComponent text="Valider la commande" color="blue" />
       </button>
     </form>
   );

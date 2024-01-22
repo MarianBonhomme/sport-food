@@ -1,5 +1,6 @@
 import React from "react";
 import { useOrder } from "../../context/orderContext";
+import ButtonComponent from './../ButtonComponent';
 
 function DishForMenuComponent(props) {
   const item = props.item;
@@ -16,7 +17,7 @@ function DishForMenuComponent(props) {
 			<p>{item.rating}⭐</p>
 			<p>{item.reviewCount}👁️</p>
 		</div>
-		<img src={item.image} className="w-5/12 rounded-full mx-auto mb-5" />
+		<img src={item.image} className="w-36 rounded-full mx-auto mb-5" />
 		<div className="pb-10">
 			<h3 className="text-lg font-bold">{item.name}</h3>
 			<p>{item.cuisine}</p>
@@ -38,7 +39,10 @@ function DishForMenuComponent(props) {
 						return <span key={tag} className="text-blue">#{tag}</span>
 					})}
 				</div>
-				<button onClick={() => addToOrder(item)} className="max-w-fit text-nowrap bg-green text-white text-xs px-4 py-2 rounded-3xl">Ajouter au panier</button>
+				
+				<button onClick={() => addToOrder(item)}>
+					<ButtonComponent text="Ajouter au panier" color="green" size="xs" />
+				</button>
 			</div>
 		</div>
 	</div>

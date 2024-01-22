@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getDishs } from './../../services/DishService';
 import DishForMenuComponent from './../../components/Dish/DishForMenuComponent';
+import TitleComponent from './../../components/TitleComponent';
 
 const colors = ['green', 'orange', 'blue', 'red', 'pink'];
 
@@ -39,7 +40,7 @@ function MenuPage() {
         <img src="src/assets/loader.gif" alt="loader" className="w-1/2 mx-auto"/>
       ) : (
         <>
-          <h2 className="font-lora text-6xl text-center font-bold mb-10">Notre Carte</h2>
+          <TitleComponent text={"Notre carte"} />
           <div className="max-w-3xl flex flex-wrap justify-center self-center gap-2 mb-10">
             {dishs
               .reduce((allCuisines, dish) => allCuisines.concat(dish.cuisine), [])
