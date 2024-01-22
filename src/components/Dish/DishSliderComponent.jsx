@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-import { getDishs } from "../../services/DishService";
 import DishForSliderComponent from './DishForSliderComponent';
+import DishService from "../../services/DishService";
 
 function PrevArrow(props) {
 	return (
@@ -20,7 +20,7 @@ export default function DishSliderComponent() {
 
   useEffect(() => {
     const fetchDishs = async () => {
-      const dishsData = await getDishs();
+      const dishsData = await DishService.getAllDish();
       setDishs(dishsData);
     };
 
@@ -38,12 +38,11 @@ export default function DishSliderComponent() {
 	  nextArrow: <NextArrow />
   };
 
-
   return (
     <Slider {...settings}>
       {dishs.map((dish, index) => (
         index <= 9 && (
-          <div className="p-2" key={dish.id}>
+          <div className="p-2" key={index}>
             <DishForSliderComponent item={dish} />
           </div>
         )

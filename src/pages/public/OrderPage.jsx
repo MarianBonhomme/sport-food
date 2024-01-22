@@ -6,7 +6,7 @@ import DeliveryFormComponent from './../../components/Delivery/DeliveryFormCompo
 import DishForOrderPageComponent from './../../components/Dish/DishForOrderPageComponent';
 
 function OrderPage() {
-  const { order, addToHistorical } = useOrder();
+  const { order, orderPrice, addToHistorical } = useOrder();
   const [confirmed, setConfirmed] = useState(false);
   const [deliveryData, setDeliveryData] = useState();
 
@@ -22,11 +22,12 @@ function OrderPage() {
         order && order.length > 0 ? (
           <div className="w-full flex">
             <div className="w-1/2">
-              {order.map((dish) => {
-                return <DishForOrderPageComponent key={dish.id} dish={dish} />;
+              <p className='ml-5 mb-5 text-xl font-semibold'>Total: {orderPrice.toFixed(2)}€</p>
+              {order.map((dish, index) => {
+                return <DishForOrderPageComponent key={index} dish={dish} />;
               })}
             </div>
-            <div className="w-1/2 fixed right-0">
+            <div className="w-1/2 fixed right-0 mt-10">
               <DeliveryFormComponent onSubmitCallback={confirmDelivery} />
             </div>
           </div>

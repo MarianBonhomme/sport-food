@@ -7,19 +7,18 @@ function DishForSliderComponent(props) {
   const { addToOrder } = useOrder();
 
   return (
-    <div className="relative flex flex-col justify-between items-center text-center shadow-custom rounded-2xl py-4 px-2">
-      <div className="absolute top-5 left-5 text-start">
-        <p>⭐{item.rating}</p>
-        <p>👁️{item.reviewCount}</p>
-      </div>
-      <img src={item.image} className="w-5/12 rounded-full mx-auto mb-3" />
-      <div className="mb-3">
-        <h3 className="font-bold">{item.name}</h3>
-        <p className="text-sm">{item.cuisine}</p>
-      </div>
-      <button onClick={() => addToOrder(item)}>
-        <ButtonComponent text="Ajouter au panier" color="green" size="xs" />
-      </button>
+    <div className="relative flex flex-col justify-between items-center text-center shadow-custom rounded-2xl px-4 py-3">
+      <h3 className="font-bold mb-3">{item.name}</h3>
+      <div className="grid grid-cols-2">
+        <img src={item.image} className="w-32 rounded-full" />
+        <div className="flex flex-col justify-center text-center text-lg">
+          <p>{item.rating}⭐</p>
+          <p className="mb-5 text-blue">{item.price.toFixed(2)}€</p>     
+          <p onClick={() => addToOrder(item)}>
+            <ButtonComponent text="Ajouter au panier" color="green" size="xs" />
+          </p>
+        </div>
+      </div> 
     </div>
   );
 }

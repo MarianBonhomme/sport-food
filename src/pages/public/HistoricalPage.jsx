@@ -3,6 +3,7 @@ import { useOrder } from "../../context/orderContext";
 import { NavLink } from "react-router-dom";
 import TitleComponent from './../../components/TitleComponent';
 import ButtonComponent from './../../components/ButtonComponent';
+import DishForHistoricalComponent from "../../components/Dish/DishForHistoricalComponent";
 
 function HistoricalPage() {
   const { historicalOrders } = useOrder();
@@ -19,22 +20,14 @@ function HistoricalPage() {
         <div className="flex flex-col items-center"> 
           {historicalOrders.map((order, index) => {
             return (
-              <div key={index} className="w-full max-w-7xl flex justify-between border-t-2 last:border-b-2 px-5 py-3">
-                <div>
-                  {order.items.map((dish) => {
-                    return (
-                      <div key={dish.id} className="flex items-center gap-3 py-1">
-                        <p className="text-sm font-semibold">{dish.quantity}x</p>
-                        <img src={dish.image} className="w-20 rounded-full" />
-                        <div>
-                          <h4 className="font-semibold">{dish.name}</h4>
-                          <p className="text-sm">{dish.cuisine}</p>
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-                  <span className="font-medium text-grey">{formattedDate(order.date)}</span>
+              <div key={index} className="w-full max-w-7xl border-t-2 last:border-b-2 px-5 py-3 relative">
+                {order.items.map((dish, index) => {
+                  return (
+                    <DishForHistoricalComponent key={index} dish={dish} />
+                  )
+                })}
+                <span className="absolute top-[20px] right-[20px] font-medium text-grey">{formattedDate(order.date)}</span>
+                <span className="absolute bottom-[20px] right-[20px] font-semibold text-xl">Total: {order.price.toFixed(2)}€</span>
               </div>
             );
           })}

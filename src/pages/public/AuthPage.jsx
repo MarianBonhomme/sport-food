@@ -61,9 +61,9 @@ function AuthPage() {
             className="w-full border rounded-lg py-2 px-5 mt-1 mb-5"
           />
         </div>
-        <button type="submit" className="mt-3">
+        <p type="submit" className="mt-3">
           <ButtonComponent text="Connexion" color="blue" />
-        </button>
+        </p>
       </form>
     </div>
   );

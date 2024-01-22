@@ -70,9 +70,9 @@ function DeliveryFormComponent({ onSubmitCallback }) {
           className="rounded-2xl shadow-custom mt-2 mb-5 px-4 py-2"
         />
       </div>
-      <button type="submit">
-        <ButtonComponent text="Valider la commande" color="blue" />
-      </button>
+      <p type="submit">
+        <ButtonComponent text="Valider la commande" color="blue"/>
+      </p>
     </form>
   );
 }

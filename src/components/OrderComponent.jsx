@@ -5,25 +5,28 @@ import DishForOrderDropdownComponent from './Dish/DishForOrderDropdownComponent'
 import ButtonComponent from './ButtonComponent';
 
 function OrderComponent() {
-  const { order, isDropdownOpen, closeDropdown } = useOrder();
+  const { order, orderPrice, isDropdownOpen, closeDropdown } = useOrder();
 
   return (
     <div className='absolute top-[80px] right-5 shadow-custom rounded-2xl bg-white'>
       {isDropdownOpen && (
         order && order.length > 0 ? (            
           <div className='flex flex-col items-start'>
-            {order.map((dish) => {
+            {order.map((dish, index) => {
               return (
-                <DishForOrderDropdownComponent key={dish.id} dish={dish} />
+                <DishForOrderDropdownComponent key={index} dish={dish} />
               );
             })}
-            <div className='w-full flex justify-center'>
-              <NavLink to={'/menu'}>
-                <ButtonComponent text="Menu" color="green" size="sm" customStyle="w-32 m-2"/>
-              </NavLink>
-              <NavLink to={'/order'}>
-                <ButtonComponent text="Commander" color="blue" size="sm" customStyle="w-32 m-2"/>
-              </NavLink>
+            <div>
+              <p className='m-2 mb-0'>Total: {orderPrice.toFixed(2)}€</p>
+              <div className='w-full flex justify-center'>
+                <NavLink to={'/menu'}>
+                  <ButtonComponent text="Menu" color="green" size="sm" customStyle="w-32 m-2"/>
+                </NavLink>
+                <NavLink to={'/order'} onClick={closeDropdown}>
+                  <ButtonComponent text="Commander" color="blue" size="sm" customStyle="w-32 m-2"/>
+                </NavLink>
+              </div>
             </div>
           </div>
         ) : (

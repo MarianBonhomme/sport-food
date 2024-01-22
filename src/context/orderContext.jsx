@@ -1,65 +1,71 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const OrderContext = createContext();
 
 export const OrderProvider = ({ children }) => {
   const [order, setOrder] = useState([]);
+  const [orderPrice, setOrderPrice] = useState(0);
   const [historicalOrders, setHistoricalOrders] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  useEffect(() => {
+    const orderPrice = order.reduce((total, dish) => total + dish.totalPrice, 0);
+    setOrderPrice(orderPrice);
+  }, [order]);
+
   const addToOrder = (dish) => {
-    const existingDish = order.find((r) => r.id === dish.id);
+    const existingDish = order.find((r) => r.uniqid === dish.uniqid);
 
     if (existingDish) {
       setOrder((prevOrder) =>
         prevOrder.map((r) =>
-          r.id === dish.id ? { ...r, quantity: r.quantity + 1 } : r
+          r.uniqid === dish.uniqid
+          ? { ...r, quantity: r.quantity + 1, totalPrice: (r.quantity + 1) * r.price }
+          : r
         )
       );
     } else {
-      setOrder((prevOrder) => [...prevOrder, { ...dish, quantity: 1 }]);
+      setOrder((prevOrder) => [
+        ...prevOrder, 
+        { ...dish, quantity: 1, totalPrice: dish.price },
+      ]);
     }
 	  openDropdown();
-  };
-
-  const addToHistorical = () => {
-    const orderWithDate = {
-      date: new Date,
-      items: order,
-    };
-    setHistoricalOrders([...historicalOrders, orderWithDate]);
-    setOrder([]);
-  };
-
-  const removeFromOrder = (dishId) => {
-    setOrder((prevOrder) =>
-      prevOrder.filter((dish) => dish.id !== dishId)
-    );
   };
 
   const incrementQuantity = (dishId) => {
     setOrder((prevOrder) =>
       prevOrder.map((dish) =>
-        dish.id === dishId
-          ? { ...dish, quantity: dish.quantity + 1 }
+        dish.uniqid === dishId
+          ? { ...dish, quantity: dish.quantity + 1, totalPrice: (dish.quantity + 1) * dish.price }
           : dish
       )
     );
   };
-
+  
   const decrementQuantity = (dishId) => {
     setOrder((prevOrder) =>
-      prevOrder
-        .map((dish) =>
-          dish.id === dishId
-            ? {
-                ...dish,
-                quantity: dish.quantity > 1 ? dish.quantity - 1 : 0,
-              }
-            : dish
-        )
-        .filter((dish) => dish.quantity > 0)
+      prevOrder.map((dish) =>
+        dish.uniqid === dishId
+          ? {
+              ...dish,
+              quantity: dish.quantity > 1 ? dish.quantity - 1 : 0,
+              totalPrice: (dish.quantity > 1 ? dish.quantity - 1 : 0) * dish.price,
+            }
+          : dish
+      ).filter((dish) => dish.quantity > 0)
     );
+  };
+
+  const addToHistorical = () => {
+    const orderWithInfos = {
+      date: new Date,
+      price: orderPrice,
+      items: order,
+    };
+    setHistoricalOrders([orderWithInfos, ...historicalOrders]);
+    setOrder([]);
+    setOrderPrice(0);
   };
 
   const openDropdown = () => {
@@ -74,11 +80,11 @@ export const OrderProvider = ({ children }) => {
     <OrderContext.Provider
       value={{
         order,
+        orderPrice,
         historicalOrders,
         isDropdownOpen,
         addToOrder,
         addToHistorical,
-        removeFromOrder,
         incrementQuantity,
         decrementQuantity,
         openDropdown,
