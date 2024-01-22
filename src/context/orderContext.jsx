@@ -1,17 +1,26 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { saveOrderToLocalStorage, saveHistoricalOrdersToLocalStorage, getHistoricalOrdersFromLocalStorage, getOrderFromLocalStorage } from '../services/LocalStorageService';
 
 const OrderContext = createContext();
 
 export const OrderProvider = ({ children }) => {
-  const [order, setOrder] = useState([]);
+  const [order, setOrder] = useState(getOrderFromLocalStorage());
   const [orderPrice, setOrderPrice] = useState(0);
-  const [historicalOrders, setHistoricalOrders] = useState([]);
+  const [historicalOrders, setHistoricalOrders] = useState(getHistoricalOrdersFromLocalStorage());
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     const orderPrice = order.reduce((total, dish) => total + dish.totalPrice, 0);
     setOrderPrice(orderPrice);
   }, [order]);
+
+  useEffect(() => {
+    saveHistoricalOrdersToLocalStorage(historicalOrders)
+  }, [historicalOrders])
+
+  useEffect(() => {
+    saveOrderToLocalStorage(order)
+  }, [order])
 
   const addToOrder = (dish) => {
     const existingDish = order.find((r) => r.uniqid === dish.uniqid);
