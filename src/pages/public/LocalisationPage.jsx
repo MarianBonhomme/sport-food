@@ -3,8 +3,8 @@ import React from "react";
 function LocalisationPage() {
   return (
 
-    <div className="min-h-[90dvh] flex flex-col justify-between p-20">
-      <h2 className="font-lora text-7xl font-bold mb-10">LOCALISATION</h2>
+    <div className="flex flex-col justify-between p-10">
+      <h2 className="font-lora text-6xl text-center font-bold mb-20">On attend votre visite!</h2>
       <div className="flex justify-center items-center">
         <div className="w-1/3 select-none">
           <iframe

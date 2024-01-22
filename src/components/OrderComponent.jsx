@@ -1,7 +1,7 @@
 import React from 'react';
-import { useOrder } from '../context/orderContext';
 import { NavLink } from 'react-router-dom';
-import DishQuantityButtonComponent from './DishQuantityButtonComponent';
+import { useOrder } from '../context/orderContext';
+import DishForOrderDropdownComponent from './Dish/DishForOrderDropdownComponent';
 
 function OrderComponent() {
   const { order, isDropdownOpen, closeDropdown } = useOrder();
@@ -13,24 +13,15 @@ function OrderComponent() {
           <div className='flex flex-col items-start'>
             {order.map((dish) => {
               return (
-                <div key={dish.id} className='px-5 py-3 border-b'>
-                  <div className='flex items-center gap-3'>
-                    <img src={dish.image} className='w-20 rounded-full'/>
-                    <div>
-                      <h4 className='font-semibold'>{dish.name}</h4>
-                      <p className='text-sm'>{dish.cuisine}</p>
-                      <DishQuantityButtonComponent  dish={dish}/>
-                    </div>
-                  </div>              
-                </div>
+                <DishForOrderDropdownComponent key={dish.id} dish={dish} />
               );
             })}
-            <div className='w-full flex justify-center my-3 gap-2'>
+            <div className='w-full flex justify-center'>
               <NavLink to={'/menu'}>
-                <button className='w-32 bg-green text-white text-sm rounded-3xl py-2'>Menu</button>
+                <button className='w-32 bg-green text-white text-sm rounded-3xl py-2 m-2'>Menu</button>
               </NavLink>
               <NavLink to={'/order'}>
-                <button className='w-32 bg-blue text-white text-sm rounded-3xl py-2' onClick={closeDropdown}>Commander</button>
+                <button className='w-32 bg-blue text-white text-sm rounded-3xl py-2 m-2 ml-0' onClick={closeDropdown}>Commander</button>
               </NavLink>
             </div>
           </div>

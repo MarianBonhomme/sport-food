@@ -32,7 +32,7 @@ function AuthPage() {
   }
 
   return (
-    <div className="w-full flex flex-col justify-center items-center p-20">
+    <div className="w-full flex flex-col justify-center items-center p-10">
       <form onSubmit={handleForm} className="w-full max-w-lg border shadow-lg px-10 py-5">
         <h2 className="text-center text-3xl mb-8">Connexion</h2>
           <label htmlFor="email">Email</label>

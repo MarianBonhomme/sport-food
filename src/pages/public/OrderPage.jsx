@@ -1,49 +1,40 @@
-import React, { useState } from 'react'
-import { useOrder } from '../../context/orderContext';
-import DishSliderComponent from '../../components/DishSliderComponent';
-import DeliveryFormComponent from '../../components/DeliveryFormComponent';
-import DeliveryConfirmedComponent from '../../components/DeliveryConfirmedComponent';
-import DishQuantityButtonComponent from '../../components/DishQuantityButtonComponent';
+import React, { useState } from "react";
+import DeliveryConfirmedComponent from "../../components/Delivery/DeliveryConfirmedComponent";
+import DishSliderComponent from "../../components/Dish/DishSliderComponent";
+import { useOrder } from "../../context/orderContext";
+import DeliveryFormComponent from './../../components/Delivery/DeliveryFormComponent';
+import DishForOrderPageComponent from './../../components/Dish/DishForOrderPageComponent';
 
 function OrderPage() {
   const { order, addToHistorical } = useOrder();
-  const [ confirmed, setConfirmed ] = useState(false);
-  const [ deliveryData, setDeliveryData]  = useState();
-  
+  const [confirmed, setConfirmed] = useState(false);
+  const [deliveryData, setDeliveryData] = useState();
+
   const confirmDelivery = (formData) => {
     setConfirmed(true);
     setDeliveryData(formData);
     addToHistorical();
-  }
+  };
 
   return (
-    <div className='w-full flex justify-center items-center p-20'>
+    <div className="w-full flex justify-center items-center p-10">
       {!confirmed ? (
         order && order.length > 0 ? (
-          <div className='w-full flex'>
-            <div className='w-1/2'>
+          <div className="w-full flex">
+            <div className="w-1/2">
               {order.map((dish) => {
-                return (
-                  <div key={dish.id} >
-                    <div className='max-w-xl flex items-center gap-5 border-t last:border-b py-5'>
-                      <img src={dish.image} className='w-32 rounded-full'/>
-                      <div>
-                        <h4 className='text-xl font-semibold'>{dish.name}</h4>
-                        <p>{dish.cuisine}</p>
-                        <DishQuantityButtonComponent dish={dish}/>
-                      </div>
-                    </div>              
-                  </div>
-                );
+                return <DishForOrderPageComponent key={dish.id} dish={dish} />;
               })}
             </div>
-            <div className='w-1/2 fixed right-0'>
-              <DeliveryFormComponent onSubmitCallback={confirmDelivery}/>
+            <div className="w-1/2 fixed right-0">
+              <DeliveryFormComponent onSubmitCallback={confirmDelivery} />
             </div>
           </div>
         ) : (
-          <div className='block max-w-7xl'>
-            <p className='text-grey text-2xl text-center font-semibold mb-10'>Votre panier est vide.</p>
+          <div className="block max-w-7xl">
+            <p className="text-grey text-2xl text-center font-semibold mb-10">
+              Votre panier est vide.
+            </p>
             <DishSliderComponent />
           </div>
         )
@@ -51,7 +42,7 @@ function OrderPage() {
         <DeliveryConfirmedComponent deliveryData={deliveryData} />
       )}
     </div>
-  )
+  );
 }
 
-export default OrderPage
+export default OrderPage;

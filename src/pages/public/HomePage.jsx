@@ -1,10 +1,10 @@
 import React from 'react'
-import DishSliderComponent from '../../components/DishSliderComponent'
 import { NavLink } from 'react-router-dom';
+import DishSliderComponent from './../../components/Dish/DishSliderComponent';
 
 function HomePage() {
   return (
-    <div className="min-h-full p-20">
+    <div className="min-h-full p-10">
       <div className='max-w-7xl mx-auto mb-20'>
         <h2 className='font-lora text-6xl font-bold text-center mb-10'>Nos suggestions</h2>
         <DishSliderComponent />

@@ -1,5 +1,5 @@
 import React from "react";
-import { useOrder } from "../context/orderContext";
+import { useOrder } from "../../context/orderContext";
 
 function DishForSliderComponent(props) {
 	const item = props.item;

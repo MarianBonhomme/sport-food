@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-import { getDishs } from "./../services/DishService";
+import { getDishs } from "../../services/DishService";
 import DishForSliderComponent from './DishForSliderComponent';
 
 function PrevArrow(props) {
