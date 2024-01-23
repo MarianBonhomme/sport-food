@@ -45,9 +45,19 @@ export const OrderProvider = ({ children }) => {
   const incrementQuantity = (dishId) => {
     setOrder((prevOrder) =>
       prevOrder.map((dish) =>
-        dish.uniqid === dishId
-          ? { ...dish, quantity: dish.quantity + 1, totalPrice: (dish.quantity + 1) * dish.price }
-          : dish
+      dish.uniqid === dishId
+        ? {
+            ...dish,
+            quantity:
+              dish.quantity + 1 <= dish.stock
+                ? dish.quantity + 1
+                : dish.quantity,
+            totalPrice:
+              (dish.quantity + 1) * dish.price <= dish.stock * dish.price
+                ? (dish.quantity + 1) * dish.price
+                : dish.totalPrice,
+          }
+        : dish
       )
     );
   };

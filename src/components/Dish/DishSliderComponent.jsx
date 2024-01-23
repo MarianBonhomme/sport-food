@@ -17,11 +17,17 @@ function NextArrow(props) {
 
 export default function DishSliderComponent() {
   const [dishs, setDishs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchDishs = async () => {
-      const dishsData = await DishService.getAllDish();
-      setDishs(dishsData);
+      try {
+        const fetchedDishs = await DishService.getAllDish();
+        setDishs(fetchedDishs);
+      } catch (error) {
+        console.error("Erreur lors du chargement des plats:", error);
+      }
+      setLoading(false)
     };
 
     fetchDishs();
@@ -40,13 +46,17 @@ export default function DishSliderComponent() {
 
   return (
     <Slider {...settings}>
-      {dishs.map((dish, index) => (
-        index <= 9 && (
-          <div className="p-2" key={index}>
-            <DishForSliderComponent item={dish} />
-          </div>
-        )
-      ))}
+      {loading ? (
+        <img src="src/assets/loader.gif" className="w-full"/>
+      ) : (
+        dishs.filter(dish => dish.isSuggested & dish.stock > 0).map((dish, index) => (
+          dish.isSuggested && (
+            <div className="p-2" key={index}>
+              <DishForSliderComponent item={dish} />
+            </div>
+          )
+        ))
+      )}
     </Slider>
   );
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DishForMenuComponent from "./../../components/Dish/DishForMenuComponent";
 import TitleComponent from "./../../components/TitleComponent";
 import DishService from "../../services/DishService";
+import DishOutOfStockComponent from "../../components/Dish/DishOutOfStockComponent";
 
 const colors = ["green", "orange", "blue", "red", "pink"];
 
@@ -30,9 +31,13 @@ function MenuPage() {
       ) : (
         <div className="pb-10">
           <TitleComponent text={"Notre carte"} />
-          <ul className="flex flex-wrap justify-center gap-10">
-            {dishs.map((dish, index) => (
-                <DishForMenuComponent key={index} item={dish} />
+          <ul className="flex flex-wrap gap-10">
+            {dishs.filter(dish => dish.isActive).map((dish, index) => (
+                dish.stock > 0 ? (
+                  <DishForMenuComponent key={index} item={dish} />
+                ) : (
+                  <DishOutOfStockComponent key={index} item={dish} />
+                )
               ))}
           </ul>
         </div>
