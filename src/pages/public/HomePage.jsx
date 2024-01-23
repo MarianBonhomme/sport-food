@@ -27,7 +27,7 @@ function HomePage() {
           <h3 className='text-2xl font-semibold text-blue mb-3'>Administration</h3>
           <NavLink to={"/auth"}>Connexion</NavLink>
           <NavLink to={"/private/list"}>Liste des plats</NavLink>
-          <NavLink to={"/private/add"}>Ajouter des plats</NavLink>
+          <NavLink to={"/private/add"}>Ajouter / Modifier un plat</NavLink>
         </div>
       </div>
     </div>

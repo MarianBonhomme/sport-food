@@ -13,7 +13,7 @@ function DishForSliderComponent(props) {
         <img src={item.image} className="w-32 rounded-full" />
         <div className="flex flex-col justify-center text-center text-lg">
           <p>{item.rating}⭐</p>
-          <p className="mb-5 text-blue">{item.price.toFixed(2)}€</p>     
+          <p className="mb-5 text-blue">{item.price}€</p>     
           <p onClick={() => addToCurrentOrder(item)}>
             <ButtonComponent text="Ajouter au panier" color="green" size="xs" />
           </p>

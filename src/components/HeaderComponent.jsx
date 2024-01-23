@@ -5,6 +5,7 @@ import { useOrder } from "../context/orderContext";
 import { UserContext } from "../context/userContext";
 import { auth } from "../firebase-config";
 import OrderDropdownComponent from "./OrderDropdownComponent";
+import LogoComponent from './LogoComponent';
 
 function HeaderComponent() {
   const { isLogged } = useContext(UserContext);
@@ -26,7 +27,7 @@ function HeaderComponent() {
   return (
     <div className="fixed top-0 left-0 w-full h-[70px] flex justify-between items-center bg-white shadow-border px-20 z-20">
       <NavLink to={"/"}>
-        <img src="src/assets/img/logo.png" className="h-14"/>
+        <LogoComponent />
       </NavLink>
       <nav className="flex items-center gap-10">
         <NavLink to={"/presentation"}>Présentation</NavLink>

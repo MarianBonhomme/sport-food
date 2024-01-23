@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, addDoc, updateDoc, doc, getDoc, query, where, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase-config";
 
 const dishsCollectionRef = collection(db, "dishs");
@@ -15,28 +15,84 @@ const DishService = {
     }
   },
 
-  addOneDish: async (dish) => {
-    try {
-      const newDishRef = db.ref("plats").push();
-      const newDishId = newDishRef.key;
-
-      await newDishRef.set({ ...dish, id: newDishId });
-
-      return newDishId;
-    } catch (error) {
-      console.error("Erreur lors de l'ajout du plat:", error);
-      throw error;
+  editOneDish: async (dish, isNew) => {
+    if (isNew) {
+      await addDoc(dishsCollectionRef, {
+        uniqid: dish.uniqid,
+        name: dish.name,
+        image: dish.image,
+        speciality: dish.speciality,
+        rating: dish.rating,
+        price: dish.price,
+        kcal: dish.kcal,
+        protein: dish.protein,
+        carbs: dish.carbs,
+        fats: dish.fats,
+        isActive: dish.isActive,
+        isSuggested: dish.isSuggested,
+        stock: dish.stock
+      })
+    } else {
+      try {
+        const existingDish = await getDishByUniqid(dish.uniqid);
+        if (existingDish) {
+          await updateDoc(existingDish.ref, {
+            name: dish.name,
+            image: dish.image,
+            speciality: dish.speciality,
+            rating: dish.rating,
+            price: dish.price,
+            kcal: dish.kcal,
+            protein: dish.protein,
+            carbs: dish.carbs,
+            fats: dish.fats,
+            isActive: dish.isActive,
+            isSuggested: dish.isSuggested,
+            stock: dish.stock
+          });
+        } else {
+          console.error("Aucun document trouvé avec l'uniqid :", dish.uniqid);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la mise à jour du plat:", error);
+        throw error;
+      }
     }
   },
 
-  deleteOneDish: async (dishId) => {
+  deleteOneDish: async (dish) => {
     try {
-      await db.ref(`plats/${dishId}`).remove();
+      const existingDish = await getDishByUniqid(dish.uniqid);
+      if (existingDish) {
+        await deleteDoc(existingDish.ref);
+      } else {
+        console.error("Aucun document trouvé avec l'uniqid :", dish.uniqid);
+      }
     } catch (error) {
-      console.error("Erreur lors de la suppression du plat:", error);
+      console.error("Erreur lors de la suppression du plat :", error);
       throw error;
     }
-  },
+  }
 };
+
+const getDishByUniqid = async (uniqid) => {
+  try {
+    const querySnapshot = await getDocs(
+      query(dishsCollectionRef, where("uniqid", "==", uniqid))
+    );
+
+    if (!querySnapshot.empty) {
+      const dishData = querySnapshot.docs[0].data();
+      const dishRef = querySnapshot.docs[0].ref;
+      return { ...dishData, ref: dishRef };
+    } else {
+      console.error("Aucun document trouvé avec l'uniqid :", uniqid);
+      return null;
+    }
+  } catch (error) {
+    console.error("Erreur lors de la récupération du plat par uniqid:", error);
+    throw error;
+  }
+}
 
 export default DishService;

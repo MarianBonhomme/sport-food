@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import DishForSliderComponent from './DishForSliderComponent';
 import DishService from "../../services/DishService";
+import LoaderComponent from "../LoaderComponent";
 
 function PrevArrow(props) {
 	return (
@@ -47,7 +48,7 @@ export default function DishSliderComponent() {
   return (
     <Slider {...settings}>
       {loading ? (
-        <img src="src/assets/loader.gif" className="w-full"/>
+        <LoaderComponent />
       ) : (
         dishs.filter(dish => dish.isSuggested & dish.stock > 0).map((dish, index) => (
           dish.isSuggested && (

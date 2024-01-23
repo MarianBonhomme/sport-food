@@ -2,7 +2,6 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import FooterComponent from "./components/FooterComponent";
 import HeaderComponent from "./components/HeaderComponent";
 import { UserContextProvider } from "./context/userContext";
-import AddDishPage from "./pages/private/AddDishPage";
 import DishListPage from "./pages/private/DishListPage";
 import PrivatePage from "./pages/private/PrivatePage";
 import AuthPage from "./pages/public/AuthPage";
@@ -29,7 +28,6 @@ function App() {
             <Route path="/auth" Component={AuthPage} />
             <Route path="/private" Component={PrivatePage}>
               <Route path="/private/list" Component={DishListPage} />
-              <Route path="/private/add" Component={AddDishPage} />
             </Route>
             <Route path="*" element={<Navigate to={"/"} />} />
           </Routes>

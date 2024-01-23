@@ -10,10 +10,10 @@ function DishForMenuComponent(props) {
 	<div className="relative w-[450px] mt-[100px] pt-[150px] flex flex-col justify-between text-center shadow-custom rounded-2xl p-3">
 		<div className="absolute -top-[100px] left-0 w-full flex justify-between items-center px-3">
 			<p className="text-start text-sm text-white rounded-3xl py-1 px-2 bg-blue">
-				{item.price.toFixed(2)}
+				{item.price}
 				<span className="text-xs">€</span>
 			</p>
-			<img src={item.image} className="w-[250px] rounded-full" />
+			<img src={item.image} className="h-[250px] rounded-full" />
 			<p className="text-end text-lg font-bold">{item.rating}⭐</p>
 		</div>
 		<div className="flex justify-between items-center mb-3">

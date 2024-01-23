@@ -3,6 +3,7 @@ import DishForMenuComponent from "./../../components/Dish/DishForMenuComponent";
 import TitleComponent from "./../../components/TitleComponent";
 import DishService from "../../services/DishService";
 import DishOutOfStockComponent from "../../components/Dish/DishOutOfStockComponent";
+import LoaderComponent from './../../components/LoaderComponent';
 
 const colors = ["green", "orange", "blue", "red", "pink"];
 
@@ -36,7 +37,7 @@ function MenuPage() {
     }
   };
 
-  const isSpecialitieSelected = (speciality) => {
+  const isSpecialitySelected = (speciality) => {
     return selectedSpecialities.includes(speciality);
   };
 
@@ -47,7 +48,9 @@ function MenuPage() {
   return (
     <div className="min-h-screen w-full flex flex-col p-10">
       {loading ? (
-        <img src="src/assets/loader.gif" className="w-1/2 mx-auto"/>
+        <div className="w-1/2 mx-auto">
+          <LoaderComponent />
+        </div>
       ) : (
         <div className="pb-10">
           <TitleComponent text={"Notre carte"} />
@@ -59,7 +62,7 @@ function MenuPage() {
                 .map((speciality, index) => (
                   <button
                     key={speciality}
-                    className={`text-xs font-bold rounded-2xl px-3 py-1 border-2 border-${colors[index % colors.length]} ${isSpecialitieSelected(speciality) ? `bg-${colors[index % colors.length]} text-white` : `text-${colors[index % colors.length]}`}`}
+                    className={`text-xs font-bold rounded-2xl px-3 py-1 border-2 border-${colors[index % colors.length]} ${isSpecialitySelected(speciality) ? `bg-${colors[index % colors.length]} text-white` : `text-${colors[index % colors.length]}`}`}
                     onClick={() => toggleSpeciality(speciality)}
                   >
                     {speciality}

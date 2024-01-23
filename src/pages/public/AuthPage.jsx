@@ -36,7 +36,7 @@ function AuthPage() {
     <div className="w-full flex flex-col justify-center items-center p-10">
       <form
         onSubmit={handleForm}
-        className="w-full max-w-lg flex flex-col items-center shadow-custom rounded-2xl px-10 py-6"
+        className="w-full max-w-lg flex flex-col items-center shadow-custom rounded-2xl px-10 py-6 select-all"
       >
         <h2 className="text-center text-3xl font-semibold mb-8">Administration</h2>
         <div className="w-full">
