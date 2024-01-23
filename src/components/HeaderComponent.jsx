@@ -1,6 +1,6 @@
 import { signOut } from "firebase/auth";
-import React, { useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useOrder } from "../context/orderContext";
 import { UserContext } from "../context/userContext";
 import { auth } from "../firebase-config";
@@ -11,6 +11,13 @@ function HeaderComponent() {
   const { isLogged } = useContext(UserContext);
   const {isOrderDropdownOpen, openOrderDropdown, closeOrderDropdown} = useOrder();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [activeLink, setActiveLink] = useState("");
+  const styleActiveLink = 'flex after:w-2/3 after:h-1 after:absolute after:-bottom-1 after:left-0 after:bg-blue after:rounded-xl'
+
+  useEffect(() => {
+    setActiveLink(location.pathname);
+  }, [location.pathname]);
 
   const logout = async () => {
     const confirmed = window.confirm("Voulez-vous vraiment vous déconnecter ?")
@@ -30,17 +37,24 @@ function HeaderComponent() {
         <LogoComponent />
       </NavLink>
       <nav className="flex items-center gap-10">
-        <NavLink to={"/presentation"}>Présentation</NavLink>
-        <NavLink to={"/menu"}>Carte</NavLink>
-        <NavLink to={"/localisation"}>Localisation</NavLink>
+        <NavLink to={"/presentation"}>
+          <div className={`flex relative ${activeLink === "/presentation" ? styleActiveLink : ""}`}>Présentation</div>
+        </NavLink>
+        <NavLink to={"/menu"}>
+          <div className={`flex relative ${activeLink === "/menu" ? styleActiveLink : ""}`}>Carte</div>
+        </NavLink>
+        <NavLink to={"/localisation"}>
+          <div className={`flex relative ${activeLink === "/localisation" ? styleActiveLink : ""}`}>Localisation</div>
+        </NavLink>
         <div>
           <p onClick={isOrderDropdownOpen ? closeOrderDropdown : openOrderDropdown} className="bg-blue text-white rounded-3xl px-4 py-1 cursor-pointer">Panier</p>
           <OrderDropdownComponent />
         </div>
         {isLogged && (
           <>
-            <NavLink to={"/private/list"}>Liste</NavLink>
-            <NavLink to={"/private/add"}>Ajouter</NavLink>
+            <NavLink to={"/private/list"}>              
+              <div className={`flex relative ${activeLink === "/private/list" ? styleActiveLink : ""}`}>Administration</div>
+            </NavLink>
             <button onClick={logout}>❌</button>
           </>
         )}

@@ -63,6 +63,7 @@ function DishListPage() {
             <p onClick={addButtonClicked}>
               <ButtonComponent color="blue" size="sm" text={"Ajouter un plat"} />
             </p> 
+            <span className="mt-5">Vous pouvez filtrer par Nom, Note, Prix ou Stock en cliquant sur la colonne correspondante.</span>
             <DishListComponent dishs={dishs} edit={edit} deleteConfirmed={deleteDish}/>       
           </div>
           {isHandleFormDisplayed && (

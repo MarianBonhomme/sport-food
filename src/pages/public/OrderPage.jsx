@@ -4,6 +4,8 @@ import DishSliderComponent from "../../components/Dish/DishSliderComponent";
 import { useOrder } from "../../context/orderContext";
 import DeliveryFormComponent from './../../components/Delivery/DeliveryFormComponent';
 import DishForOrderPageComponent from './../../components/Dish/DishForOrderPageComponent';
+import ButtonComponent from './../../components/ButtonComponent';
+import { NavLink } from 'react-router-dom';
 
 function OrderPage() {
   const { currentOrder, currentOrderPrice, addToHistorical } = useOrder();
@@ -31,11 +33,12 @@ function OrderPage() {
             </div>
           </div>
         ) : (
-          <div className="block max-w-7xl">
-            <p className="text-grey text-2xl text-center font-semibold mb-10">
-              Votre panier est vide.
-            </p>
+          <div className="max-w-7xl grid grid-cols-1 gap-20 text-center">
+            <p className="text-grey text-3xl text-center font-semibold">Votre panier est vide.</p>
             <DishSliderComponent />
+            <NavLink to="/menu">
+              <ButtonComponent text="Voir la carte complète" color="orange" />
+            </NavLink>
           </div>
         )
       ) : (
