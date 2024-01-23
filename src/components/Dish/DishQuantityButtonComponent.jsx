@@ -1,20 +1,20 @@
 import React from "react";
 import { useOrder } from "../../context/orderContext";
 
-function DishQuantityButtonComponent(props) {
+function DishQuantityButtonComponent({dish}) {
   const { incrementQuantity, decrementQuantity } = useOrder();
 
   return (
-    <div className="flex items-center gap-x-2 mt-2 select-none text-sm">
+    <div className="flex items-center gap-x-2 mt-2 text-sm">
       <button
-        onClick={() => decrementQuantity(props.dish.uniqid)}
+        onClick={() => decrementQuantity(dish.uniqid)}
         className="h-5 w-5 bg-red text-white px-1 rounded-full"
       >
         -
       </button>
-      {props.dish.quantity}
+      {dish.quantity}
       <button
-        onClick={() => incrementQuantity(props.dish.uniqid)}
+        onClick={() => incrementQuantity(dish.uniqid)}
         className="h-5 w-5 bg-green text-white px-1 rounded-full"
       >
         +

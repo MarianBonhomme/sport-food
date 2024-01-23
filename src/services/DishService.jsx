@@ -7,8 +7,8 @@ const DishService = {
   getAllDish: async () => {
     try {
       const data = await getDocs(dishsCollectionRef);
-	  const dishs = data.docs.map((doc) => ({...doc.data()}));
-	  return dishs;
+	    const dishs = data.docs.map((doc) => ({...doc.data()}));
+	    return dishs;
     } catch (error) {
       console.error("Erreur lors de la récupération des plats:", error);
       throw error;

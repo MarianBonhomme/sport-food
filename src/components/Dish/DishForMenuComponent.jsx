@@ -4,11 +4,11 @@ import ButtonComponent from './../ButtonComponent';
 
 function DishForMenuComponent(props) {
   const item = props.item;
-  const { addToOrder } = useOrder();
+  const { addToCurrentOrder } = useOrder();
 
   return (
 	<div className="relative w-[450px] mt-[100px] pt-[150px] flex flex-col justify-between text-center shadow-custom rounded-2xl p-3">
-		<div className="absolute -top-[100px] left-0 w-full flex justify-between items-center px-3 select-none">
+		<div className="absolute -top-[100px] left-0 w-full flex justify-between items-center px-3">
 			<p className="text-start text-sm text-white rounded-3xl py-1 px-2 bg-blue">
 				{item.price.toFixed(2)}
 				<span className="text-xs">€</span>
@@ -28,7 +28,7 @@ function DishForMenuComponent(props) {
 				<p>{item.fats} lipides</p>
 			</div>		
 		</div>
-		<p onClick={() => addToOrder(item)}>
+		<p onClick={() => addToCurrentOrder(item)}>
 			<ButtonComponent text="Ajouter au panier" color="green" size="xs" />
 		</p>
 	</div>

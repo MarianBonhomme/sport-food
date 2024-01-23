@@ -1,59 +1,62 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { saveOrderToLocalStorage, saveHistoricalOrdersToLocalStorage, getHistoricalOrdersFromLocalStorage, getOrderFromLocalStorage } from '../services/LocalStorageService';
+import { saveCurrentOrderToLocalStorage, saveHistoricalOrdersToLocalStorage, getHistoricalOrdersFromLocalStorage, getCurrentOrderFromLocalStorage } from '../services/LocalStorageService';
 
 const OrderContext = createContext();
 
 export const OrderProvider = ({ children }) => {
-  const [order, setOrder] = useState(getOrderFromLocalStorage());
-  const [orderPrice, setOrderPrice] = useState(0);
+  const [currentOrder, setCurrentOrder] = useState(getCurrentOrderFromLocalStorage());
+  const [currentOrderPrice, setCurrentOrderPrice] = useState(0);
   const [historicalOrders, setHistoricalOrders] = useState(getHistoricalOrdersFromLocalStorage());
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isOrderDropdownOpen, setIsOrderDropdownOpen] = useState(false);
 
+  // Met à jour le prix total de la commande
   useEffect(() => {
-    const orderPrice = order.reduce((total, dish) => total + dish.totalPrice, 0);
-    setOrderPrice(orderPrice);
-  }, [order]);
+    const currentOrderPrice = currentOrder.reduce((total, dish) => total + dish.totalPrice, 0);
+    setCurrentOrderPrice(currentOrderPrice);
+  }, [currentOrder]);
 
+  // Récupère l'historique des commandes à partir du localStorage
   useEffect(() => {
     saveHistoricalOrdersToLocalStorage(historicalOrders)
   }, [historicalOrders])
 
+  // Récupère la commande en cours à partir du localStorage
   useEffect(() => {
-    saveOrderToLocalStorage(order)
-  }, [order])
+    saveCurrentOrderToLocalStorage(currentOrder)
+  }, [currentOrder])
 
-  const addToOrder = (dish) => {
-    const existingDish = order.find((r) => r.uniqid === dish.uniqid);
+  const addToCurrentOrder = (dish) => {
+    const existingDish = currentOrder.find((r) => r.uniqid === dish.uniqid);
 
     if (existingDish) {
-      setOrder((prevOrder) =>
-        prevOrder.map((r) =>
+      setCurrentOrder((prevCurrentOrder) =>
+        prevCurrentOrder.map((r) =>
           r.uniqid === dish.uniqid
           ? { ...r, quantity: r.quantity + 1, totalPrice: (r.quantity + 1) * r.price }
           : r
         )
       );
     } else {
-      setOrder((prevOrder) => [
-        ...prevOrder, 
+      setCurrentOrder((prevCurrentOrder) => [
+        ...prevCurrentOrder, 
         { ...dish, quantity: 1, totalPrice: dish.price },
       ]);
     }
-	  openDropdown();
+	  openOrderDropdown();
   };
 
-  const incrementQuantity = (dishId) => {
-    setOrder((prevOrder) =>
-      prevOrder.map((dish) =>
-      dish.uniqid === dishId
+  const incrementQuantity = (uniqid) => {
+    setCurrentOrder((prevCurrentOrder) =>
+      prevCurrentOrder.map((dish) =>
+      dish.uniqid === uniqid
         ? {
             ...dish,
             quantity:
-              dish.quantity + 1 <= dish.stock
+              dish.quantity + 1 <= dish.stock // N'incrémente pas au dessus du stock
                 ? dish.quantity + 1
                 : dish.quantity,
-            totalPrice:
-              (dish.quantity + 1) * dish.price <= dish.stock * dish.price
+            totalPrice: // Prix total du plat en fonction de la quantité
+              (dish.quantity + 1) * dish.price <= dish.stock * dish.price 
                 ? (dish.quantity + 1) * dish.price
                 : dish.totalPrice,
           }
@@ -63,8 +66,8 @@ export const OrderProvider = ({ children }) => {
   };
   
   const decrementQuantity = (dishId) => {
-    setOrder((prevOrder) =>
-      prevOrder.map((dish) =>
+    setCurrentOrder((prevCurrentOrder) =>
+      prevCurrentOrder.map((dish) =>
         dish.uniqid === dishId
           ? {
               ...dish,
@@ -72,42 +75,42 @@ export const OrderProvider = ({ children }) => {
               totalPrice: (dish.quantity > 1 ? dish.quantity - 1 : 0) * dish.price,
             }
           : dish
-      ).filter((dish) => dish.quantity > 0)
+      ).filter((dish) => dish.quantity > 0) // Supprime le plat de la commande
     );
   };
 
   const addToHistorical = () => {
     const orderWithInfos = {
       date: new Date,
-      price: orderPrice,
-      items: order,
+      price: currentOrderPrice,
+      items: currentOrder,
     };
     setHistoricalOrders([orderWithInfos, ...historicalOrders]);
-    setOrder([]);
-    setOrderPrice(0);
+    setCurrentOrder([]); // Réinitialise la commande en cours
+    setCurrentOrderPrice(0);
   };
 
-  const openDropdown = () => {
-    setIsDropdownOpen(true);
+  const openOrderDropdown = () => {
+    setIsOrderDropdownOpen(true);
   };
 
-  const closeDropdown = () => {
-    setIsDropdownOpen(false);
+  const closeOrderDropdown = () => {
+    setIsOrderDropdownOpen(false);
   };
 
   return (
     <OrderContext.Provider
       value={{
-        order,
-        orderPrice,
+        currentOrder,
+        currentOrderPrice,
         historicalOrders,
-        isDropdownOpen,
-        addToOrder,
+        isOrderDropdownOpen,
+        addToCurrentOrder,
         addToHistorical,
         incrementQuantity,
         decrementQuantity,
-        openDropdown,
-        closeDropdown,
+        openOrderDropdown,
+        closeOrderDropdown,
       }}
     >
       {children}

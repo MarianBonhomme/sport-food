@@ -19,10 +19,10 @@ function PresentationPage() {
             </NavLink>
           </div>
         </div>
-        <img src="src/assets/img/headline-ver.jpg" className='absolute bottom-0 right-0 h-full select-none' />
+        <img src="src/assets/img/headline-ver.jpg" className='absolute bottom-0 right-0 h-full'/>
       </div>
       <div className="w-full flex justify-center items-center mt-20">
-        <img src="src/assets/img/dish.png" className='w-3/12 select-none'/>
+        <img src="src/assets/img/dish.png" className='w-3/12'/>
         <div className='w-1/2 h-full relative flex flex-col justify-center pl-32 z-10'>
           <h2 className='text-6xl font-lora font-bold mb-5 text-nowrap'>Healthy Food</h2>
           <p className='text-justify'>À destination des amateurs de sport cherchant à maintenir leur bien-être, notre restaurant se distingue par une offre culinaire dédiée. Chaque plat, équilibré et savoureux, est minutieusement conçu pour répondre aux exigences d'une clientèle active en quête d'une alimentation saine et délicieuse.</p>
@@ -44,7 +44,7 @@ function PresentationPage() {
             </NavLink>
           </div>
         </div>
-        <img src="src/assets/img/pyramid.jpg" className='w-1/3 max-w-xl select-none'/>
+        <img src="src/assets/img/pyramid.jpg" className='w-1/3 max-w-xl'/>
       </div>
     </div>
   )

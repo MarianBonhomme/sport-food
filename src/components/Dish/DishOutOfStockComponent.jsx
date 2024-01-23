@@ -4,8 +4,8 @@ function DishOutOfStockComponent(props) {
 	const item = props.item;
 
   return (
-	<div className="relative w-[450px] mt-[100px] pt-[150px] flex flex-col justify-between text-center shadow-custom rounded-2xl p-3 opacity-50 select-none">
-		<div className="absolute -top-[100px] left-0 w-full flex justify-between items-center px-3 select-none">
+	<div className="relative w-[450px] mt-[100px] pt-[150px] flex flex-col justify-between text-center shadow-custom rounded-2xl p-3 opacity-50">
+		<div className="absolute -top-[100px] left-0 w-full flex justify-between items-center px-3">
 			<p className="text-start text-sm text-white rounded-3xl py-1 px-2 bg-blue">
 				{item.price.toFixed(2)}
 				<span className="text-xs">€</span>

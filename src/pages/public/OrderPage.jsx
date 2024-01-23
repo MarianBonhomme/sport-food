@@ -6,7 +6,7 @@ import DeliveryFormComponent from './../../components/Delivery/DeliveryFormCompo
 import DishForOrderPageComponent from './../../components/Dish/DishForOrderPageComponent';
 
 function OrderPage() {
-  const { order, orderPrice, addToHistorical } = useOrder();
+  const { currentOrder, currentOrderPrice, addToHistorical } = useOrder();
   const [confirmed, setConfirmed] = useState(false);
   const [deliveryData, setDeliveryData] = useState();
 
@@ -15,15 +15,14 @@ function OrderPage() {
     setDeliveryData(formData);
     addToHistorical();
   };
-
   return (
     <div className="w-full flex justify-center items-center p-10">
       {!confirmed ? (
-        order && order.length > 0 ? (
+        currentOrder && currentOrder.length > 0 ? (
           <div className="w-full flex">
             <div className="w-1/2">
-              <p className='ml-5 mb-5 text-xl font-semibold'>Total: {orderPrice.toFixed(2)}€</p>
-              {order.map((dish, index) => {
+              <p className='ml-5 mb-5 text-xl font-semibold'>Total: {currentOrderPrice.toFixed(2)}€</p>
+              {currentOrder.map((dish, index) => {
                 return <DishForOrderPageComponent key={index} dish={dish} />;
               })}
             </div>
