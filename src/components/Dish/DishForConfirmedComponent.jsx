@@ -12,7 +12,7 @@ function DishForConfirmedComponent({dish}) {
         </div>
       </div>
       <p className="font-semibold">
-        {(dish.price * dish.quantity).toFixed(2)}€
+        {dish.price * dish.quantity}€
       </p>
     </div>
   );

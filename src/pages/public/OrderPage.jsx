@@ -21,7 +21,7 @@ function OrderPage() {
         currentOrder && currentOrder.length > 0 ? (
           <div className="w-full flex">
             <div className="w-1/2">
-              <p className='ml-5 mb-5 text-xl font-semibold'>Total: {currentOrderPrice.toFixed(2)}€</p>
+              <p className='ml-5 mb-5 text-xl font-semibold'>Total: {currentOrderPrice}€</p>
               {currentOrder.map((dish, index) => {
                 return <DishForOrderPageComponent key={index} dish={dish} />;
               })}

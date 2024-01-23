@@ -1,5 +1,6 @@
 import { collection, getDocs, addDoc, updateDoc, doc, getDoc, query, where, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase-config";
+import data from '../../data.json';
 
 const dishsCollectionRef = collection(db, "dishs");
 
@@ -11,6 +12,7 @@ const DishService = {
 	    return dishs;
     } catch (error) {
       console.error("Erreur lors de la récupération des plats:", error);
+      return data; // données statiques (si quota firebase dépassé)
       throw error;
     }
   },

@@ -34,7 +34,7 @@ function DeliveryConfirmedComponent(props) {
                 )
               })}
             </div>
-            <p className="text-end font-semibold text-lg border-t-2 pt-3">Total: {latestOrder.price.toFixed(2)}€</p>
+            <p className="text-end font-semibold text-lg border-t-2 pt-3">Total: {latestOrder.price}€</p>
           </div>
         </div>
       </div>

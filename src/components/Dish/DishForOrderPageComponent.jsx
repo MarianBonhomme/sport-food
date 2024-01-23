@@ -12,7 +12,7 @@ function DishForOrderPageComponent(props) {
             <p>{props.dish.speciality}</p>
             <DishQuantityButtonComponent dish={props.dish}/>
           </div>
-          <p className="text-lg">{(props.dish.price * props.dish.quantity).toFixed(2)}€</p>
+          <p className="text-lg">{props.dish.price * props.dish.quantity}€</p>
         </div>
       </div>
     </div>

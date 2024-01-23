@@ -18,7 +18,7 @@ function OrderDropdownComponent() {
               );
             })}
             <div className='w-full flex flex-col items-center'>
-              <p className='m-2 mb-0'>Total: {currentOrderPrice.toFixed(2)}€</p>
+              <p className='m-2 mb-0'>Total: {currentOrderPrice}€</p>
               <div className='w-full flex justify-center'>
                 <NavLink to={'/menu'}>
                   <ButtonComponent text="Menu" color="green" size="sm" customStyle="w-32 m-2"/>

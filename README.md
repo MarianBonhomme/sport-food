@@ -1,2 +1,3 @@
-admin@admin.com
-admin123
+ADMINISTRATION
+login: admin@admin.com
+password: admin123

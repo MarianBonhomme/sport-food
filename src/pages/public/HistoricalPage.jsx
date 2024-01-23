@@ -27,7 +27,7 @@ function HistoricalPage() {
                   )
                 })}
                 <span className="absolute top-[20px] right-[20px] font-medium text-grey">{formattedDate(order.date)}</span>
-                <span className="absolute bottom-[20px] right-[20px] font-semibold text-xl">Total: {order.price.toFixed(2)}€</span>
+                <span className="absolute bottom-[20px] right-[20px] font-semibold text-xl">Total: {order.price}€</span>
               </div>
             );
           })}

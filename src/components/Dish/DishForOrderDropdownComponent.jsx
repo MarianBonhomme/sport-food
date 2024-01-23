@@ -11,7 +11,7 @@ function DishForOrderDropdownComponent(props) {
           <p className="text-sm">{props.dish.speciality}</p>
           <div className="w-full flex justify-between items-end">
             <DishQuantityButtonComponent dish={props.dish}/>
-            <p className="text-sm">{(props.dish.price * props.dish.quantity).toFixed(2)}€</p>
+            <p className="text-sm">{props.dish.price * props.dish.quantity}€</p>
           </div>
         </div>
       </div>

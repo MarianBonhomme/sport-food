@@ -8,7 +8,7 @@ function DishForHistoricalComponent({dish}) {
 		<div>
 			<h4 className="text-xl font-semibold">{dish.name}</h4>
 			<p>{dish.speciality}</p>
-			<p className="text-blue text-sm font-semibold">{(dish.price * dish.quantity).toFixed(2)}€</p>
+			<p className="text-blue text-sm font-semibold">{dish.price * dish.quantity}€</p>
 		</div>
 	</div>
   )
